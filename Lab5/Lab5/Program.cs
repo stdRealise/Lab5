@@ -151,22 +151,29 @@ namespace Schedule
                      Console.SetCursorPosition(x, y + 27);
                      Console.CursorVisible = true;
                      string name = Console.ReadLine();
-                     Console.CursorVisible = false;
-                     if (schedule.FindStation(name) == -1)
+                     if(name == "")
                      {
-                        Console.SetCursorPosition(x, y + 27);
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("Остановка не найдена! Для продолжения нажмите Enter.");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.ReadLine();
-                        Console.Clear();
+                        isWorking = false;
                      }
                      else
                      {
-                        Console.Clear();
-                        PrintTimetable(x, y, name, schedule, 35);
+                        Console.CursorVisible = false;
+                        if (schedule.FindStation(name) == -1)
+                        {
+                           Console.SetCursorPosition(x, y + 27);
+                           Console.ForegroundColor = ConsoleColor.Red;
+                           Console.Write("Остановка не найдена! Для продолжения нажмите Enter.");
+                           Console.ForegroundColor = ConsoleColor.White;
+                           Console.ReadLine();
+                           Console.Clear();
+                        }
+                        else
+                        {
+                           Console.Clear();
+                           PrintTimetable(x, y, name, schedule, 35);
+                        }
+                        active_i = n - 1;
                      }
-                     active_i = n - 1;
                   }
                   else
                   {
